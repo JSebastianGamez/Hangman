@@ -1,54 +1,53 @@
-palabraAdivinar = ''
-listaPalabraAdiv = []
-listaPalabraMost = []
+paladv = ''
+listpaladv = []
+listpalmost = []
 intentos = 5
 letra = ''
 run = True
 
-# Logica
 
-## Pedimos la palabra a adivinar
+## asking for a word
 print('AHORCADO')
-palabraAdivinar = input('Dime una palabra: ')
+paladv = input('Dime una palabra: ')
 
-## Separamos la palabra en letras
-listaPalabraAdiv = list(palabraAdivinar)
+## splitting word
+listpaladv = list(paladv)
 
-for item in listaPalabraAdiv:
-    listaPalabraMost.append('_')
+for item in listpaladv:
+    listpalmost.append('_')
 
 while run:
-    ## Mostramos la palabra a adivinar
-    print(' '.join(listaPalabraMost))
+    ## showing word to guess
+    print(' '.join(listpalmost))
 
-    ## Pedimos una letra
+    ## ask for a letter
     letra = input('Dame una letra: ')
 
-    ## Limpiar pantalla
+    ## clean screen
     for num in range(100):
         print()
 
-    ## Comprueba si se ha equivocado
+    ## checks if failed
     fallo = False
 
-    if letra not in listaPalabraAdiv:
-        ## Ha fallado
+    if letra not in listpaladv:
+        ## failed
         fallo = True
         intentos = intentos - 1
         print('Has fallado!!!! Te quedan {intentos} intentos'.format(intentos=intentos))
     else:
-        ## Adivinado, sustituimos
-        for key, value in enumerate(listaPalabraAdiv):
+        ## guessing the word
+        for key, value in enumerate(listpaladv):
             if value == letra:
-                listaPalabraMost[key] = value
+                listpalmost[key] = value
 
-    ## Comprueba si ha terminado la partida
-    ### Se le acaban los intentos
+    ## Checks if game is over
+    ### Running out of attempts
     if intentos <= 0:
         run = False
         print('Has perdido, la palabra '
-              'era "{palabra}"'.format(palabra=''.join(listaPalabraAdiv)))
-    elif listaPalabraAdiv == listaPalabraMost:
+              'era "{palabra}"'.format(palabra=''.join(listpaladv)))
+    elif listpaladv == listpalmost:
         run = False
         print('Has ganado, la palabra '
               'era "{palabra}"'.format(palabra=''.join(listaPalabraAdiv)))
